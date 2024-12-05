@@ -1,0 +1,139 @@
+<Page
+    x:Class="MoshimoBox.Views.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:v="clr-namespace:MoshimoBox.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:m="clr-namespace:MoshimoBox.Models"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="DataPage"
+    FontSize="24"
+    d:DataContext="{d:DesignInstance v:HomePage,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ScrollViewer.CanContentScroll="False"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="ui:TextBlock">
+            <Setter  Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="0" Text="GUID"/>
+            <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="24" x:Name="txtGuid" Text="{Binding GuidText,Mode=OneWay}" IsReadOnly="True"/>
+            <ui:Button Margin="4" Grid.Column="3" Grid.Row="0" Command="{Binding GenerateGuidCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Drafts24}"/>
+            <ui:Button Margin="4" Grid.Column="4" Grid.Row="0" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtGuid,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+            <ComboBox Margin="4" Grid.Column="1" FontSize="24" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding GuidFormats}" SelectedItem="{Binding SelectedGuidFormat,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayText}" FontSize="24" VerticalAlignment="Center"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="2" Text="ULID"/>
+            <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" x:Name="txtUlid" FontSize="24" Grid.Row="2" Text="{Binding UlidText,Mode=OneWay}" IsReadOnly="True"/>
+            <ui:Button Margin="4" Grid.Column="3" Grid.Row="2" Command="{Binding GenerateUlidCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Drafts24}"/>
+            <ui:Button Margin="4" Grid.Column="4" Grid.Row="2" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtUlid,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+            <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="3" Text="Now"/>
+            <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="24" Text="{Binding NowText,Mode=OneWay}" x:Name="txtNow" IsReadOnly="True"/>
+            <ui:Button Margin="4" Grid.Column="3" Grid.Row="3" Command="{Binding ShowDateTimeCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Drafts24}"/>
+            <ui:Button Margin="4" Grid.Column="4" Grid.Row="3" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtNow,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+            <ui:TextBox Margin="4" Grid.Column="1" Grid.Row="4" PlaceholderText="Format" FontSize="24"  Text="{Binding DateFormatText,Mode=TwoWay}"/>
+            <ComboBox Margin="4" FontSize="24" Grid.Column="2" VerticalContentAlignment="Center" Grid.Row="4" ItemsSource="{Binding TimeZones}" SelectedItem="{Binding SelectedTimeZone,Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="24" VerticalAlignment="Center" Text="{Binding DisplayName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+        </Grid>
+        <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="1">
+            <ui:TextBlock VerticalAlignment="Center" Text="Text"/>
+            <ui:TextBox Width="400" Margin="4" HorizontalAlignment="Stretch" FontSize="24" PlaceholderText="text" Text="{Binding EnteredText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="5" Text="Pascal"/>
+                <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" FontSize="24" Text="{Binding PascalText,Mode=OneWay}" x:Name="txtPascal" IsReadOnly="True"/>
+                <ui:Button Margin="4" Grid.Column="3" Grid.Row="5" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtPascal,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+
+                <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="6" Text="Snake(L)"/>
+                <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" FontSize="24" Text="{Binding LSnakeText,Mode=OneWay}" x:Name="txtLSnake" IsReadOnly="True"/>
+                <ui:Button Margin="4" Grid.Column="3" Grid.Row="6" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtLSnake,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+
+                <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="7" Text="Snake(U)"/>
+                <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" FontSize="24" Text="{Binding USnakeText,Mode=OneWay}" x:Name="txtUSnake" IsReadOnly="True"/>
+                <ui:Button Margin="4" Grid.Column="3" Grid.Row="7" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtUSnake,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+
+                <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="8" Text="SHA256"/>
+                <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" FontSize="24" Text="{Binding SHA256Text,Mode=OneWay}" x:Name="txtSHA256" IsReadOnly="True"/>
+                <ui:Button Margin="4" Grid.Column="3" Grid.Row="8" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtSHA256,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+
+                <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="11" Text="URLE"/>
+                <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="11" FontSize="24" Text="{Binding UrlEncodeText,Mode=OneWay}" x:Name="txtUrlEncode" IsReadOnly="True"/>
+                <ui:Button Margin="4" Grid.Column="3" Grid.Row="11" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtUrlEncode,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+
+                <ui:TextBlock Margin="4" Grid.Column="0" Grid.Row="12" Text="URLD"/>
+                <ui:TextBox Margin="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="12" FontSize="24" Text="{Binding UrlDecodeText,Mode=OneWay}" x:Name="txtUrlDecode" IsReadOnly="True"/>
+                <ui:Button Margin="4" Grid.Column="3" Grid.Row="12" Command="{Binding CopyCommand}" CommandParameter="{Binding ElementName=txtUrlDecode,Path=Text}" Appearance="Primary" Icon="{ui:SymbolIcon Copy24}"/>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
