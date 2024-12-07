@@ -52,6 +52,12 @@ namespace MoshimoBox.ViewModels.Windows
                     Icon = new SymbolIcon { Symbol = SymbolRegular.Document24 },
                     TargetPageType = typeof(Views.Pages.FilePage)
                 },
+                new NavigationViewItem()
+                {
+                    Content = "Json2CS",
+                    Icon = new SymbolIcon { Symbol = SymbolRegular.DocumentJs16 },
+                    TargetPageType = typeof(Views.Pages.JsonToCSPage)
+                },
             };
             this.FooterMenuItems = new ObservableCollection<NavigationViewItem>()
             {

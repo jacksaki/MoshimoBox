@@ -53,6 +53,8 @@ namespace MoshimoBox
                 services.AddSingleton<HomeViewModel>();
                 services.AddSingleton<FilePage>();
                 services.AddSingleton<FileViewModel>();
+                services.AddSingleton<JsonToCSPage>();
+                services.AddSingleton<JsonToCSViewModel>();
                 services.AddSingleton<GenStringPage>();
                 services.AddSingleton<GenStringViewModel>();
                 services.AddSingleton<SettingsPage>();
