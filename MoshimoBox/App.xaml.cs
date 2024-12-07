@@ -51,6 +51,10 @@ namespace MoshimoBox
 
                 services.AddSingleton<HomePage>();
                 services.AddSingleton<HomeViewModel>();
+                services.AddSingleton<FilePage>();
+                services.AddSingleton<FileViewModel>();
+                services.AddSingleton<GenStringPage>();
+                services.AddSingleton<GenStringViewModel>();
                 services.AddSingleton<SettingsPage>();
                 services.AddSingleton<SettingsViewModel>();
             }).Build();

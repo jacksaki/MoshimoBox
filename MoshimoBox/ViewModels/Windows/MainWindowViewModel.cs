@@ -36,9 +36,21 @@ namespace MoshimoBox.ViewModels.Windows
             {
                 new NavigationViewItem()
                 {
-                    Content = "Home",
+                    Content = "String Convert",
                     Icon = new SymbolIcon { Symbol = SymbolRegular.Home24 },
                     TargetPageType = typeof(Views.Pages.HomePage)
+                },
+                new NavigationViewItem()
+                {
+                    Content = "Generate String",
+                    Icon = new SymbolIcon { Symbol = SymbolRegular.AppGeneric24 },
+                    TargetPageType = typeof(Views.Pages.GenStringPage)
+                },
+                new NavigationViewItem()
+                {
+                    Content = "File",
+                    Icon = new SymbolIcon { Symbol = SymbolRegular.Document24 },
+                    TargetPageType = typeof(Views.Pages.FilePage)
                 },
             };
             this.FooterMenuItems = new ObservableCollection<NavigationViewItem>()
